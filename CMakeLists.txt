@@ -50,7 +50,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/Modules ${CMAKE_ROOT}/Modules )
 # Create a link if Modules/ does not exists
 IF(EXISTS ${CMAKE_SOURCE_DIR}/cmake-fedora/Modules)
     IF(NOT EXISTS ${CMAKE_SOURCE_DIR}/Modules)
-	EXECUTE_PROCESS(COMMAND ln -s ${CMAKE_SOURCE_DIR}/cmake-fedora/Modules .)
+	EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/cmake-fedora/Modules ${CMAKE_SOURCE_DIR}/Modules)
     ENDIF(NOT EXISTS ${CMAKE_SOURCE_DIR}/Modules)
 ENDIF(EXISTS ${CMAKE_SOURCE_DIR}/cmake-fedora/Modules)
 
