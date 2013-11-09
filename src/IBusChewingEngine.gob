@@ -323,6 +323,23 @@ class IBus:Chewing:Engine from IBus:Engine{
 			(propSpecs[i].defaultValue)? propSpecs[i].defaultValue : ""
 			);
 		if (propSpecs[i].defaultValue){
+		    switch(propSpecs[i].valueType){
+			case G_TYPE_BOOLEAN:
+			    set_boolean_gvalue(&gValue, propSpecs[i].defaultValue);
+			    break;
+			case G_TYPE_UINT:
+			    set_uint_gvalue(&gValue, propSpecs[i].defaultValue);
+			    break;
+			case G_TYPE_INT:
+			    set_int_gvalue(&gValue, propSpecs[i].defaultValue);
+			    break;
+			case G_TYPE_STRING:
+			    set_string_gvalue(&gValue, propSpecs[i].defaultValue);
+			    break;
+			default:
+			    continue;
+		    }
+		    ibus_chewing_config_set_value(self->config, "engine/Chewing", propSpecs[i].key, &gValue);
 		    g_strlcpy(buf,propSpecs[i].defaultValue, BUFFER_SIZE_LOCAL);
 		}else{
 		    continue;

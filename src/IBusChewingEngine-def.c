@@ -633,3 +633,18 @@ static void key_send_fake_event(KeySym key, Display *pDisplay)
 
 #endif
 
+void set_boolean_gvalue(GValue *gValue, const gchar *value) {
+    g_value_set_boolean(gValue, strcmp(value, "0"));
+}
+
+void set_uint_gvalue(GValue *gValue, const gchar *value) {
+    g_value_set_int(gValue, (gint) g_ascii_strtoll(value, NULL, 0));
+}
+
+void set_int_gvalue(GValue *gValue, const gchar *value) {
+    g_value_set_uint(gValue, (guint) g_ascii_strtoull(value, NULL, 0));
+}
+
+void set_string_gvalue(GValue *gValue, const gchar *value) {
+    g_value_set_string(gValue, value);
+}
